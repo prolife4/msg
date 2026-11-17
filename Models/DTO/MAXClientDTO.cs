@@ -4,7 +4,7 @@ using Vmx.Messenger.DataBase.Models;
 
 namespace Vmx.Messenger.Models.DTO;
 
-public class MAXClientDTO : VmxBaseDTO
+public class MAXClientDTO : VmxBaseDTO, IMessengerClientDto
 {
     public int Id { get; set; }
     public string ChatName { get; set; }
@@ -12,6 +12,9 @@ public class MAXClientDTO : VmxBaseDTO
     public string Token { get; set; }
     public string Description { get; set; }
     public bool IsActive { get; set; }
+
+    /// <summary>Имя клиента для логов (см. <see cref="IMessengerClientDto.DisplayName"/>).</summary>
+    public string DisplayName => ChatName;
 
     public ConcurrentQueue<MAXClientDTO> Messages { get; set; } = new();
 
