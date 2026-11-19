@@ -5,7 +5,7 @@ using Vmx.Messenger.DataBase.Models;
 
 namespace Vmx.Messenger.Models.DTO;
 
-public class TelegramClientDTO : VmxBaseDTO
+public class TelegramClientDTO : VmxBaseDTO, IMessengerClientDto
 {
     public int Id { get; set; }
     public string ChatName { get; set; }
@@ -13,6 +13,9 @@ public class TelegramClientDTO : VmxBaseDTO
     public string Token { get; set; }
     public string Description { get; set; }
     public bool IsActive { get; set; }
+
+    /// <summary>Имя клиента для логов (см. <see cref="IMessengerClientDto.DisplayName"/>).</summary>
+    public string DisplayName => ChatName;
 
     public ConcurrentQueue<TelegramMessageDTO> Messages { get; set; } = new();
 
